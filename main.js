@@ -7,16 +7,16 @@ let rmvBtn;
 
 // console.log(addBtn);
 
-let displayBooks = [];
+let library = [];
 function Book(title,author) {
     this.title = title;
     this.author = author;
 }
+//localStorage.setItem('books',library)
 
-// let book = new Book();
 
 function addBook(book){
-    displayBooks.push(book);
+    library.push(book);
 }
 
 function createBook(book){
@@ -42,22 +42,34 @@ form.addEventListener('submit', (event) => {
     event.preventDefault();
     let book = new Book(title.value, author.value);
     createBook(book);
-    addBook(book);
+    let obj = localStorage.setItem(book.title,JSON.stringify(book));
+    addBook(obj);
     // console.log(createBook(book));
-    console.log(displayBooks);
-  
 });
 
 function removeBook(el) {
   if (el.classList.contains('remv-cls')) {
-    el.parentElement.parentElement.remove();
+    el.parentElement.remove();
   }
 
 }
 
-rmvBtn.addEventListener('click', function(e) {
-  console.log(e);
-  removeBook(e.target)});
+bookContainer.addEventListener('click', function(e) {
+    removeBook(e.target)
+    //let index = displayBooks
+    // if (e.target.classList.contains('remv-cls')) {
+    //     let eachIndex = e.target.parentElement.rowIndex -l 
+    //     console.log(eachIetndex)
+    //     // e.target.parentElement.remove()
+    //     // //displayBooks(myLibrary[myLibrary.length-1])
 
-
-// console.log(document.forms);
+    //     // myLibrary.forEach((book, index) => {
+    //     //   if (index === eachIndex) {
+    //     //     myLibrary.splice[eachIndex, 1]
+    //     //   }
+    //     // })
+    //   }
+});
+console.log(library);
+function displayBooks () {
+}
