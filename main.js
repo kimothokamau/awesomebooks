@@ -1,9 +1,8 @@
-// Global variables
+/* eslint max-classes-per-file: ["error", 3] */
 const form = document.querySelector('#form');
 const bookContainer = document.getElementById('book-container');
 let library = [];
 
-// Book class
 class Book {
   constructor(title, author) {
     this.title = title;
@@ -28,8 +27,6 @@ class Storage {
     localStorage.setItem('library', JSON.stringify(books));
   }
 }
-
-// Library/display class
 
 class Library {
   static displayBooks() {
@@ -66,8 +63,6 @@ class Library {
   }
 }
 
-// Event listeners
-
 document.addEventListener('DOMContentLoaded', () => {
   Library.displayBooks();
 });
@@ -78,7 +73,6 @@ form.addEventListener('submit', (event) => {
   const author = document.getElementById('author').value;
   if (title !== '' && author !== '') {
     const book = new Book(title, author);
-    // const book = { title: `${title}`, author: `${author}` };
     Library.createBook(book);
     Storage.setBook(book);
     form.reset();
