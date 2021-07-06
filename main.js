@@ -2,7 +2,16 @@ const title = document.getElementById('title');
 const author = document.getElementById('author');
 const form = document.querySelector('#form');
 const bookContainer = document.getElementById('book-container');
-const library = [];
+
+let  library = [];
+if (localStorage.getItem('library')) {
+    library = JSON.parse(localStorage.getItem('library'))
+  } else {
+    library = []
+}
+
+const data = JSON.parse(localStorage.getItem('library'));
+
 function Book(title, author) {
   this.title = title;
   this.author = author;
