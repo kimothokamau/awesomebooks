@@ -39,10 +39,9 @@ function createBook() {
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   const book = new Book(title.value, author.value);
-  addBook(book);
-  localStorage.setItem('library',JSON.stringify(library));
   createBook(book);
-  form.reset();
+  const obj = localStorage.setItem(book.title, JSON.stringify(book));
+  addBook(obj);
 });
 
 function removeBook(el) {
@@ -53,4 +52,14 @@ function removeBook(el) {
 
 bookContainer.addEventListener('click', (e) => {
   removeBook(e.target);
+});
+
+function displayBooks(){
+  data.forEach(book => {
+    createBook(book);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  displayBooks();
 });
