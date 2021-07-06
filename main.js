@@ -39,9 +39,10 @@ function createBook() {
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   const book = new Book(title.value, author.value);
+  addBook(book);
+  localStorage.setItem('library',JSON.stringify(library));
   createBook(book);
-  const obj = localStorage.setItem(book.title, JSON.stringify(book));
-  addBook(obj);
+  form.reset();
 });
 
 function removeBook(el) {
