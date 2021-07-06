@@ -1,3 +1,8 @@
+// Global variables
+const form = document.querySelector('#form');
+const bookContainer = document.getElementById('book-container');
+let library = [];
+
 // Book class
 class Book {
   constructor(title, author) {
@@ -6,8 +11,26 @@ class Book {
   }
 }
 
+class Storage {
+  static getBooks() {
+    if (localStorage.getItem('library')) {
+      library = JSON.parse(localStorage.getItem('library'));
+    } else {
+      library = [];
+    }
+    return library;
+  }
+
+  static setBook(book) {
+    const books = Storage.getBooks();
+    books.push(book);
+    library = books;
+    localStorage.setItem('library', JSON.stringify(books));
+  }
+}
+
 // Library/display class
-let library = [];
+
 class Library {
   static displayBooks() {
     const data = Storage.getBooks();
@@ -29,7 +52,7 @@ class Library {
       bookContainer.childNodes,
       element.parentElement,
     );
-  
+
     if (element.classList.contains('remv-cls')) {
       books.forEach((book, index) => {
         if (indexBook === index) {
@@ -43,27 +66,7 @@ class Library {
   }
 }
 
-class Storage {
-  static getBooks() {
-  if (localStorage.getItem('library')) {
-    library = JSON.parse(localStorage.getItem('library'));
-  } else {
-    library = [];
-  }
-  return library;
-}
-
-static setBook(book) {
-  const books = Storage.getBooks();
-  books.push(book);
-  library = books;
-  localStorage.setItem('library', JSON.stringify(books));
-}
-}
-
 // Event listeners
-const form = document.querySelector('#form');
-const bookContainer = document.getElementById('book-container');
 
 document.addEventListener('DOMContentLoaded', () => {
   Library.displayBooks();
@@ -82,11 +85,6 @@ form.addEventListener('submit', (event) => {
   }
 });
 
-
 bookContainer.addEventListener('click', (e) => {
   Library.removeBook(e.target);
 });
-
-
-
-
