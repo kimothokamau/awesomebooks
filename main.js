@@ -1,31 +1,27 @@
 const form = document.querySelector('#form');
 const bookContainer = document.getElementById('book-container');
 
-let  library = [];
-function getBooks(){
+let library = [];
+function getBooks() {
   if (localStorage.getItem('library')) {
-    library = JSON.parse(localStorage.getItem('library'))
+    library = JSON.parse(localStorage.getItem('library'));
   } else {
-    library = []
+    library = [];
   }
-  return library
+  return library;
 }
 
-function setBook(book){
+function setBook(book) {
   const books = getBooks();
   books.push(book);
   library = books;
-  localStorage.setItem('library',JSON.stringify(books));
-}
-
-function addBook(book) {
-  library.push(book);
+  localStorage.setItem('library', JSON.stringify(books));
 }
 
 function createBook(book) {
   const bookDiv = document.createElement('div');
   bookDiv.innerHTML = `<p>${book.title} by ${book.author}</p>
-                      <button class ='remv-cls'>Remove</button>`
+                      <button class ='remv-cls'>Remove</button>`;
   bookContainer.appendChild(bookDiv);
 }
 
@@ -49,9 +45,9 @@ function removeBook(element) {
   );
 
   if (element.classList.contains('remv-cls')) {
-    books.forEach((book,index) => {
-      if(indexBook === index){
-        books.splice(index,1)
+    books.forEach((book, index) => {
+      if (indexBook === index) {
+        books.splice(index, 1);
       }
       library = books;
       localStorage.setItem('library', JSON.stringify(library));
@@ -60,14 +56,13 @@ function removeBook(element) {
   }
 }
 
-
 bookContainer.addEventListener('click', (e) => {
   removeBook(e.target);
 });
 
-function displayBooks(){
+function displayBooks() {
   const data = getBooks();
-  data.forEach(book => {
+  data.forEach((book) => {
     createBook(book);
   });
 }
