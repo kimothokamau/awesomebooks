@@ -1,14 +1,18 @@
-// Book class
-class Book {
-  constructor(title, author) {
-    this.title = title;
-    this.author = author;
-  }
-}
+/* eslint-disable import/extensions */
+import Book from './module/book';
+import Storage from './module/Storage';
+
+const form = document.querySelector('#form');
+const bookContainer = document.getElementById('book-container');
 
 // Library/display class
 let library = [];
 class Library {
+  constructor(title,author){
+    this.title = title;
+    this.author = author;
+  }
+
   static displayBooks() {
     const data = Storage.getBooks();
     data.forEach((book) => {
@@ -29,7 +33,7 @@ class Library {
       bookContainer.childNodes,
       element.parentElement,
     );
-  
+
     if (element.classList.contains('remv-cls')) {
       books.forEach((book, index) => {
         if (indexBook === index) {
@@ -43,27 +47,7 @@ class Library {
   }
 }
 
-class Storage {
-  static getBooks() {
-  if (localStorage.getItem('library')) {
-    library = JSON.parse(localStorage.getItem('library'));
-  } else {
-    library = [];
-  }
-  return library;
-}
-
-static setBook(book) {
-  const books = Storage.getBooks();
-  books.push(book);
-  library = books;
-  localStorage.setItem('library', JSON.stringify(books));
-}
-}
-
 // Event listeners
-const form = document.querySelector('#form');
-const bookContainer = document.getElementById('book-container');
 
 document.addEventListener('DOMContentLoaded', () => {
   Library.displayBooks();
@@ -82,11 +66,9 @@ form.addEventListener('submit', (event) => {
   }
 });
 
-
 bookContainer.addEventListener('click', (e) => {
   Library.removeBook(e.target);
 });
 
-
-
-
+export default library;
+/* eslint-enable import/extensions */
