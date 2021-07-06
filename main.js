@@ -3,6 +3,7 @@ const author = document.getElementById('author');
 const form = document.querySelector('#form');
 const bookContainer = document.getElementById('book-container');
 
+
 let  library = [];
 if (localStorage.getItem('library')) {
     library = JSON.parse(localStorage.getItem('library'))
@@ -39,9 +40,10 @@ function createBook() {
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   const book = new Book(title.value, author.value);
+  addBook(book);
+  localStorage.setItem('library',JSON.stringify(library));
   createBook(book);
-  const obj = localStorage.setItem(book.title, JSON.stringify(book));
-  addBook(obj);
+  form.reset();
 });
 
 function removeBook(el) {
