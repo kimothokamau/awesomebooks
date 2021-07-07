@@ -1,20 +1,19 @@
 body {
   /* margin: 0 auto;
   width: 80%; */
-
 }
 
 .main {
   display: flex;
-  flex-direction:  column;
+  flex-direction: column;
   align-items: center;
 }
 
 #book-library {
-    border: solid 1px black;
-    padding: 8px;
-    margin-bottom: 30px;
-    width: 70%;
+  border: solid 1px black;
+  padding: 8px;
+  margin-bottom: 30px;
+  width: 70%;
 }
 
 .book-container {
@@ -22,6 +21,7 @@ body {
   padding: 3px;
   justify-content: space-between;
 }
+
 form > input {
   display: block;
   margin-bottom: 15px;
@@ -40,6 +40,6 @@ form > button {
   padding: 4px;
 }
 
-#book-library tr:nth-child(even){background-color: #f2f2f2;}
+#book-library tr:nth-child(even) { background-color: #f2f2f2; }
 
-#book-library tr:hover {background-color: #ddd;}
+#book-library tr:hover { background-color: #ddd; }

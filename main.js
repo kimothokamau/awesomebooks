@@ -4,11 +4,10 @@ const bookLibrary = document.getElementById('book-library');
 
 function createBook(book) {
   const bookDiv = document.createElement('tr');
-  bookDiv.className = 'book-container'
+  bookDiv.className = 'book-container';
   bookDiv.innerHTML = `<td>${book.title} by ${book.author}</td>
                       <td><button class ='remv-cls'>Remove</button></td>`;
   bookLibrary.appendChild(bookDiv);
-  console.log(bookLibrary.childNodes);
 }
 
 class Book {
