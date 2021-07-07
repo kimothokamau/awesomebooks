@@ -3,44 +3,42 @@ const form = document.querySelector('#form');
 const bookContainer = document.getElementById('book-container');
 let library = [];
 
+function createBook(book) {
+  const bookDiv = document.createElement('div');
+  bookDiv.innerHTML = `<p>${book.title} by ${book.author}</p>
+                      <button class ='remv-cls'>Remove</button>`;
+  bookContainer.appendChild(bookDiv);
+}
+
+
+
 class Book {
   constructor(title, author) {
     this.title = title;
     this.author = author;
   }
-}
 
-class Storage {
-  static getBooks() {
+  displayBooks() {
+    const data = getBooks();
+    data.forEach((book) => {
+      Book.createBook(book);
+    });
+  }
+
+  setBook(book) {
+    const books = getBooks();
+    books.push(book);
+    library = books;
+    localStorage.setItem('library', JSON.stringify(books));
+  }
+
+  getBooks() {
     if (localStorage.getItem('library')) {
       library = JSON.parse(localStorage.getItem('library'));
     } else {
       library = [];
     }
-    return library;
-  }
-
-  static setBook(book) {
-    const books = Storage.getBooks();
-    books.push(book);
-    library = books;
-    localStorage.setItem('library', JSON.stringify(books));
-  }
-}
-
-class Library {
-  static displayBooks() {
-    const data = Storage.getBooks();
-    data.forEach((book) => {
-      Library.createBook(book);
-    });
-  }
-
-  static createBook(book) {
-    const bookDiv = document.createElement('div');
-    bookDiv.innerHTML = `<p>${book.title} by ${book.author}</p>
-                        <button class ='remv-cls'>Remove</button>`;
-    bookContainer.appendChild(bookDiv);
+    return this.library;
   }
 
   static removeBook(element) {
@@ -63,8 +61,16 @@ class Library {
   }
 }
 
+class Storage {
+
+}
+
+class Library {
+
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  Library.displayBooks();
+  Book.displayBooks();
 });
 
 form.addEventListener('submit', (event) => {
@@ -73,12 +79,12 @@ form.addEventListener('submit', (event) => {
   const author = document.getElementById('author').value;
   if (title !== '' && author !== '') {
     const book = new Book(title, author);
-    Library.createBook(book);
-    Storage.setBook(book);
+    Book.createBook(book);
+    Book.setBook(book);
     form.reset();
   }
 });
 
 bookContainer.addEventListener('click', (e) => {
-  Library.removeBook(e.target);
+  Book.removeBook(e.target);
 });
