@@ -2,6 +2,9 @@
 
 This is the first project in the Microverse's JavaScript module.
 
+## Live Demo
+[Link](https://kimothokamau.github.io/awesomebooks/)
+
 ### Description
 "Awesome books" is a simple website that displays a list of books and allows you to add and remove books from that list.
 
