@@ -1,7 +1,6 @@
 /* eslint max-classes-per-file: ["error", 3] */
 const form = document.querySelector('#form');
 const bookContainer = document.getElementById('book-container');
-let library = [];
 
 function createBook(book) {
   const bookDiv = document.createElement('div');
@@ -10,81 +9,63 @@ function createBook(book) {
   bookContainer.appendChild(bookDiv);
 }
 
-
-
 class Book {
   constructor(title, author) {
     this.title = title;
     this.author = author;
+    this.library = JSON.parse(localStorage.getItem('library') || '[]');
+  }
+
+  addBook(book) {
+    this.library.push(book);
+  }
+
+  setBook() {
+    localStorage.setItem('library', JSON.stringify(this.library));
   }
 
   displayBooks() {
-    const data = getBooks();
-    data.forEach((book) => {
-      Book.createBook(book);
+    this.library.forEach((book) => {
+      createBook(book);
     });
   }
 
-  setBook(book) {
-    const books = getBooks();
-    books.push(book);
-    library = books;
-    localStorage.setItem('library', JSON.stringify(books));
-  }
-
-  getBooks() {
-    if (localStorage.getItem('library')) {
-      library = JSON.parse(localStorage.getItem('library'));
-    } else {
-      library = [];
-    }
-    return this.library;
-  }
-
-  static removeBook(element) {
-    const books = Storage.getBooks();
+  removeBook(element) {
+    const books = this.library;
     const indexBook = Array.prototype.indexOf.call(
       bookContainer.childNodes,
       element.parentElement,
     );
-
     if (element.classList.contains('remv-cls')) {
       books.forEach((book, index) => {
         if (indexBook === index) {
           books.splice(index, 1);
         }
-        library = books;
-        localStorage.setItem('library', JSON.stringify(library));
+        this.library = books;
+        localStorage.setItem('library', JSON.stringify(this.library));
       });
       element.parentElement.remove();
     }
   }
 }
 
-class Storage {
-
-}
-
-class Library {
-
-}
+const newbook = new Book();
 
 document.addEventListener('DOMContentLoaded', () => {
-  Book.displayBooks();
+  newbook.displayBooks();
 });
-
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   const title = document.getElementById('title').value;
   const author = document.getElementById('author').value;
   if (title !== '' && author !== '') {
     const book = new Book(title, author);
-    Book.createBook(book);
-    Book.setBook(book);
+    createBook(book);
+    newbook.addBook(book);
+    newbook.setBook();
     form.reset();
   }
 });
-
 bookContainer.addEventListener('click', (e) => {
-  Book.removeBook(e.target);
+  newbook.removeBook(e.target);
 });
