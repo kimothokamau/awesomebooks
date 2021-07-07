@@ -11,32 +11,31 @@ Create and access properties and methods of JavaScript objects.
 
 ## Built With
 
-- Ruby on Rails
-- Ruby
+- JavaScript
+- HTML & CSS
 
 ### Prerequisites
 
 * Internet connection
-* You need to have ruby, rails, node JS, npm and yarn installed
+* You need to have a browser
 
 ## Getting started
 
 - Run this command in your OS terminal: `git clone git@github.com:kimothokamau/awesomebooks.git` to get a local copy of the project.
 - Navigate to the project directory
-- Run `npm install` or `yarn`
 - Open the html page
-- Add a book
-- Remove a book
+- Add a book(s)
+- Remove a book(s)
+- Confirm that you see the books as they are received and as they get removed
+- Refresh & close the browser, open and confirm that you can view the books previously added
 
 
 ## Authors
 
-👤 **Author**
+👤 **Authors**
+- GitHub: [jmagero](https://github.com/jmagero)
 
 - GitHub: [kimothokamau](https://github.com/kimothokamau)
-
-
-- GitHub: [jmagero](https://github.com/jmagero)
 
 
 ## 🤝 Contributing
