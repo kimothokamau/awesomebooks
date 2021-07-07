@@ -1,9 +1,45 @@
 body {
-  margin: 0 auto;
-  width: 50%;
+  /* margin: 0 auto;
+  width: 80%; */
+
 }
 
+.main {
+  display: flex;
+  flex-direction:  column;
+  align-items: center;
+}
+
+#book-library {
+    border: solid 1px black;
+    padding: 8px;
+    margin-bottom: 30px;
+    width: 70%;
+}
+
+.book-container {
+  display: flex;
+  padding: 3px;
+  justify-content: space-between;
+}
 form > input {
   display: block;
   margin-bottom: 15px;
 }
+
+form > button {
+  float: right;
+}
+
+#book-library tr {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#book-library td {
+  padding: 4px;
+}
+
+#book-library tr:nth-child(even){background-color: #f2f2f2;}
+
+#book-library tr:hover {background-color: #ddd;}
