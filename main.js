@@ -1,22 +1,6 @@
+/* eslint max-classes-per-file: ["error", 3] */
 const form = document.querySelector('#form');
 const bookContainer = document.getElementById('book-container');
-
-let library = [];
-function getBooks() {
-  if (localStorage.getItem('library')) {
-    library = JSON.parse(localStorage.getItem('library'));
-  } else {
-    library = [];
-  }
-  return library;
-}
-
-function setBook(book) {
-  const books = getBooks();
-  books.push(book);
-  library = books;
-  localStorage.setItem('library', JSON.stringify(books));
-}
 
 function createBook(book) {
   const bookDiv = document.createElement('div');
@@ -25,48 +9,63 @@ function createBook(book) {
   bookContainer.appendChild(bookDiv);
 }
 
+class Book {
+  constructor(title, author) {
+    this.title = title;
+    this.author = author;
+    this.library = JSON.parse(localStorage.getItem('library') || '[]');
+  }
+
+  addBook(book) {
+    this.library.push(book);
+  }
+
+  setBook() {
+    localStorage.setItem('library', JSON.stringify(this.library));
+  }
+
+  displayBooks() {
+    this.library.forEach((book) => {
+      createBook(book);
+    });
+  }
+
+  removeBook(element) {
+    const books = this.library;
+    const indexBook = Array.prototype.indexOf.call(
+      bookContainer.childNodes,
+      element.parentElement,
+    );
+    if (element.classList.contains('remv-cls')) {
+      books.forEach((book, index) => {
+        if (indexBook === index) {
+          books.splice(index, 1);
+        }
+        this.library = books;
+        localStorage.setItem('library', JSON.stringify(this.library));
+      });
+      element.parentElement.remove();
+    }
+  }
+}
+
+const newbook = new Book();
+
+document.addEventListener('DOMContentLoaded', () => {
+  newbook.displayBooks();
+});
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   const title = document.getElementById('title').value;
   const author = document.getElementById('author').value;
   if (title !== '' && author !== '') {
-    const book = { title: `${title}`, author: `${author}` };
+    const book = new Book(title, author);
     createBook(book);
-    setBook(book);
+    newbook.addBook(book);
+    newbook.setBook();
     form.reset();
   }
 });
-
-function removeBook(element) {
-  const books = getBooks();
-  const indexBook = Array.prototype.indexOf.call(
-    bookContainer.childNodes,
-    element.parentElement,
-  );
-
-  if (element.classList.contains('remv-cls')) {
-    books.forEach((book, index) => {
-      if (indexBook === index) {
-        books.splice(index, 1);
-      }
-      library = books;
-      localStorage.setItem('library', JSON.stringify(library));
-    });
-    element.parentElement.remove();
-  }
-}
-
 bookContainer.addEventListener('click', (e) => {
-  removeBook(e.target);
-});
-
-function displayBooks() {
-  const data = getBooks();
-  data.forEach((book) => {
-    createBook(book);
-  });
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  displayBooks();
+  newbook.removeBook(e.target);
 });
