@@ -1,6 +1,11 @@
 /* eslint max-classes-per-file: ["error", 3] */
 const form = document.querySelector('#form');
 const bookLibrary = document.getElementById('book-library');
+const bookListLink = document.getElementById('booklist-link');
+const newBookLink = document.getElementById('newbook-link');
+const contactLink = document.getElementById('contact-link');
+const addbookSection = document.getElementById('add-book');
+const contactSection = document.getElementById('contact-info');
 
 function createBook(book) {
   const bookDiv = document.createElement('tr');
@@ -70,3 +75,18 @@ form.addEventListener('submit', (event) => {
 bookLibrary.addEventListener('click', (e) => {
   newbook.removeBook(e.target);
 });
+
+newBookLink.addEventListener('click', (e) => {
+  addbookSection.className = 'display-block';
+
+})
+
+contactLink.addEventListener('click', (e) => {
+  contactSection.className = 'display-block'
+})
+
+
+
+
+
+
