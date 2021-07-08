@@ -12,16 +12,16 @@
     <header>  
       <nav>
         <p>Awesome Books</p>
-        <a href="">List</a>
-        <a href="">Add New</a>
-        <a href="">Contact</a>
+        <a href="#book-list">List</a>
+        <a href="#add-book">Add New</a>
+        <a href="#contact-info">Contact</a>
       </nav>
     </header>
-    <section>
+    <section id="book-list" class="display-none">
       <h1>AWESOME BOOKS</h1>
       <table id="book-library"></table>
     </section>   
-    <section class="book-form">
+    <section class="book-form display-none" id="add-book">
       <h1>Add a book</h1>
       <form id="form">
         <input type="text" id="title" name="title" placeholder="Title">
@@ -29,7 +29,7 @@
         <button type="submit" id="addBtn">Add</button>
       </form>
     </section>
-    <section>
+    <section id="contact-info" class="display-none">
       <h1>Contact Information</h1>
       <p>Do you have any questions or you just wat to say hello?You can reach out to us:</p>
       <ul>

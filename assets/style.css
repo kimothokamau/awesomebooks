@@ -16,6 +16,16 @@ nav, footer {
   border: 1px solid black;
 }
 
+
+.display-none {
+  display: none;
+}
+
+.display-block {
+  display: block;
+}
+
+
 #book-library {
   border: solid 1px black;
   padding: 8px;
