@@ -1,4 +1,5 @@
 import { DateTime } from './luxon.js';
+
 const form = document.querySelector('#form');
 const bookLibrary = document.getElementById('book-library');
 const bookListLink = document.getElementById('booklist-link');
@@ -7,7 +8,6 @@ const contactLink = document.getElementById('contact-link');
 const addbookSection = document.getElementById('add-book');
 const contactSection = document.getElementById('contact-info');
 const listSection = document.getElementById('book-list');
-
 
 const dateTime = () => {
   const dateTime = document.getElementById('dateTime');
@@ -84,29 +84,22 @@ bookLibrary.addEventListener('click', (e) => {
   newbook.removeBook(e.target);
 });
 
-newBookLink.addEventListener('click', (e) => {
+newBookLink.addEventListener('click', () => {
   addbookSection.className = 'display-block';
   contactSection.className = 'display-none';
   listSection.className = 'display-none';
+});
 
-})
-
-contactLink.addEventListener('click', (e) => {
-  contactSection.className = 'display-block'
+contactLink.addEventListener('click', () => {
+  contactSection.className = 'display-block';
   addbookSection.className = 'display-none';
   listSection.className = 'display-none';
-})
+});
 
-bookListLink.addEventListener('click', (e) => {
+bookListLink.addEventListener('click', () => {
   listSection.className = 'display-block';
   contactSection.className = 'display-none';
   addbookSection.className = 'display-none';
-})
+});
 
 dateTime();
-
-
-
-
-
-

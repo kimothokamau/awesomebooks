@@ -5,11 +5,13 @@
   width: 100%;
 }
 
-header, footer {
+header,
+footer {
   width: 100%;
 }
 
-nav, footer {
+nav,
+footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -22,11 +24,10 @@ nav a {
   color: black;
 }
 
-#dateTime{
+#dateTime {
   float: right;
   padding-right: 3px;
 }
-
 
 .display-none {
   display: none;
@@ -35,7 +36,6 @@ nav a {
 .display-block {
   display: block;
 }
-
 
 #book-library {
   border: solid 1px black;
