@@ -78,11 +78,13 @@ bookLibrary.addEventListener('click', (e) => {
 
 newBookLink.addEventListener('click', (e) => {
   addbookSection.className = 'display-block';
+  contactSection.className = 'display-none';
 
 })
 
 contactLink.addEventListener('click', (e) => {
   contactSection.className = 'display-block'
+  addbookSection.className = 'display-none';
 })
 
 
