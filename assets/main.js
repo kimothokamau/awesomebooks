@@ -1,4 +1,4 @@
-/* eslint max-classes-per-file: ["error", 3] */
+import { DateTime } from './luxon.js';
 const form = document.querySelector('#form');
 const bookLibrary = document.getElementById('book-library');
 const bookListLink = document.getElementById('booklist-link');
@@ -6,6 +6,14 @@ const newBookLink = document.getElementById('newbook-link');
 const contactLink = document.getElementById('contact-link');
 const addbookSection = document.getElementById('add-book');
 const contactSection = document.getElementById('contact-info');
+const listSection = document.getElementById('book-list');
+
+
+const dateTime = () => {
+  const dateTime = document.getElementById('dateTime');
+  const dt = DateTime.now();
+  dateTime.textContent = dt.toLocaleString(DateTime.DATETIME_MED);
+};
 
 function createBook(book) {
   const bookDiv = document.createElement('tr');
@@ -79,13 +87,23 @@ bookLibrary.addEventListener('click', (e) => {
 newBookLink.addEventListener('click', (e) => {
   addbookSection.className = 'display-block';
   contactSection.className = 'display-none';
+  listSection.className = 'display-none';
 
 })
 
 contactLink.addEventListener('click', (e) => {
   contactSection.className = 'display-block'
   addbookSection.className = 'display-none';
+  listSection.className = 'display-none';
 })
+
+bookListLink.addEventListener('click', (e) => {
+  listSection.className = 'display-block';
+  contactSection.className = 'display-none';
+  addbookSection.className = 'display-none';
+})
+
+dateTime();
 
 
 
