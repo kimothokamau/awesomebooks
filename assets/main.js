@@ -1,12 +1,13 @@
 /* eslint max-classes-per-file: ["error", 3] */
 const form = document.querySelector('#form');
-const bookContainer = document.getElementById('book-container');
+const bookLibrary = document.getElementById('book-library');
 
 function createBook(book) {
-  const bookDiv = document.createElement('div');
-  bookDiv.innerHTML = `<p>${book.title} by ${book.author}</p>
-                      <button class ='remv-cls'>Remove</button>`;
-  bookContainer.appendChild(bookDiv);
+  const bookDiv = document.createElement('tr');
+  bookDiv.className = 'book-container';
+  bookDiv.innerHTML = `<td>${book.title} by ${book.author}</td>
+                      <td><button class ='remv-cls'>Remove</button></td>`;
+  bookLibrary.appendChild(bookDiv);
 }
 
 class Book {
@@ -33,8 +34,8 @@ class Book {
   removeBook(element) {
     const books = this.library;
     const indexBook = Array.prototype.indexOf.call(
-      bookContainer.childNodes,
-      element.parentElement,
+      bookLibrary.childNodes,
+      element.parentElement.parentElement,
     );
     if (element.classList.contains('remv-cls')) {
       books.forEach((book, index) => {
@@ -44,7 +45,7 @@ class Book {
         this.library = books;
         localStorage.setItem('library', JSON.stringify(this.library));
       });
-      element.parentElement.remove();
+      element.parentElement.parentElement.remove();
     }
   }
 }
@@ -66,6 +67,6 @@ form.addEventListener('submit', (event) => {
     form.reset();
   }
 });
-bookContainer.addEventListener('click', (e) => {
+bookLibrary.addEventListener('click', (e) => {
   newbook.removeBook(e.target);
 });
