@@ -8,21 +8,43 @@
   <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
-  <main class="main">
-    <header>
-      <h1>AWESOME BOOKS</h1>
+  <main class="main">  
+    <header>  
+      <nav>
+        <p>Awesome Books</p>
+        <div class="nav-links">
+          <a href="#book-list" id="booklist-link">List</a>
+          <a href="#add-book" id="newbook-link">AddNew</a>
+          <a href="#contact-info" id="contact-link">Contact</a>
+        </div>     
+      </nav>
+      <div id="dateTime"></div>
     </header>
-    <table id="book-library"></table>
-    <section class="book-form">
-      <h2>Add a book</h2>
+    <section id="book-list" class="display-none">
+      <h1>AWESOME BOOKS</h1>
+      <table id="book-library"></table>
+    </section>   
+    <section class="book-form display-none" id="add-book">
+      <h1>Add a book</h1>
       <form id="form">
         <input type="text" id="title" name="title" placeholder="Title">
         <input type="text" id="author" name="author" placeholder="Author">
         <button type="submit" id="addBtn">Add</button>
       </form>
     </section>
+    <section id="contact-info" class="display-none">
+      <h1>Contact Information</h1>
+      <p>Do you have any questions or you just wat to say hello?You can reach out to us:</p>
+      <ul>
+        <li>Our email: mail@mail.com</li>
+        <li>Our phone number: 900130012021</li>
+        <li>Our address: Palm Beach 78,8451 City, Country</li>
+      </ul>
+    </section>
+    <footer>
+      Copyright
+    </footer>
   </main>
-  
-  <script src="/assets/main.js"></script>
+  <script type="module" src="/assets/main.js"></script>  
 </body>
 </html>

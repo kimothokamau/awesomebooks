@@ -2,13 +2,59 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+}
+
+header,
+footer {
+  width: 100%;
+}
+
+nav,
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+nav a {
+  text-decoration: none;
+  color: black;
+  margin-right: 2em;
+}
+
+nav a:hover {
+  color: blue;
+}
+
+#dateTime {
+  float: right;
+  padding-right: 3px;
+}
+
+.display-none {
+  display: none;
+}
+
+.display-block {
+  display: block;
+}
+
+#book-list {
+  width: 70%;
+}
+
+#book-list h1 {
+  text-align: center;
 }
 
 #book-library {
   border: solid 1px black;
   padding: 8px;
   margin-bottom: 30px;
-  width: 70%;
+  width: 100%;
 }
 
 .book-container {
@@ -38,3 +84,14 @@ form > button {
 #book-library tr:nth-child(even) { background-color: #f2f2f2; }
 
 #book-library tr:hover { background-color: #ddd; }
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: darkgray;
+  color: white;
+  text-align: center;
+  border: 1px solid black;
+}
